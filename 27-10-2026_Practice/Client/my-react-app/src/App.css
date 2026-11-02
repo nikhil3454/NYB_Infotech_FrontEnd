@@ -1,0 +1,40 @@
+h1{
+  text-align: left;
+  color:aqua;
+  border:10px green 10px 10px 10px ;
+}
+
+.app {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 25px;
+}
+
+.custom-button {
+  background-color: #2563eb;
+  color: white;
+  padding: 10px 18px;
+  margin: 5px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.2s ease;
+}
+
+.custom-button:hover {
+  background-color: #1d4ed8;
+}
+
+nav {
+  margin: 20px 0;
+}
+
+nav a {
+  margin-right: 8px;
+  text-decoration: none;
+  color: #2563eb;
+}

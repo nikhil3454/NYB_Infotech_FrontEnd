@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS_Intro.css"></link> <!-- Exteranl CSS-->
+    <style> <!-- Internal Css-->
+        * { /* universal selector */
+        width: 200px;
+    height: 100px;
+    padding: 20px;
+    border: 5px solid black;
+    box-sizing: content-box;
+       }
+
+        h2 { /*element selector*/
+            color: blue;
+        }
+        .nik { /* class Selector */
+            color: purple;
+        }
+        #Heading2{ /* Id selector */
+            color: green;
+        }
+        p,label,input{ /*Group selector*/
+            margin: 10px 0;
+            display: block;
+            background-color: whitesmoke;
+        }
+        [type='text']{ /* attribute selector */
+            border: 2px solid #333;
+            padding: 5px;
+            background-color: white;
+        }
+        div h1{ /*descendant selector*/
+            color: darkslategray;
+        }
+     div>h2 { /* child selector */
+            color: rgb(27, 214, 214);
+        }
+        p + p { /* adjacent sibling selector */
+            margin-top: 20px;
+            color: darkred;
+        }
+        p.dotted {border-style: dotted;}
+p.dashed {border-style: dashed;}
+p.solid {border-style: solid;}
+p.double {border-style: double;}
+p.groove {border-style: groove;}
+p.ridge {border-style: ridge;}
+p.inset {border-style: inset;}
+p.outset {border-style: outset;}
+p.none {border-style: none;}
+p.hidden {border-style: hidden;}
+p.mix {border-style: dotted dashed solid double;}
+
+    </style> <!--Internal CSS-->
+</head> 
+<body>
+    <h1  class ='nik';style="color:aquamarine; border:1px solid black;"> this a heading element which is used for CSS Practice.</h1> <!--Inline Css-->
+    <h2 class="nik" id="Heading2">Hello</h2>
+    <h2>Hai</h2>
+    <p>pragraph1</p>
+    <p>prargrpah2</p>
+    <p>paragraph3</p>
+    <label>enter you name:</label> <br>
+    <input type="text" data-required="text">
+    <div>
+        <h1>Parent div and this heading is a child element to the parent</h1>
+        <div>
+            <h2>this heading is the child of another child element div</h2>
+            <p>nikhil</p>
+            <p>nithin</p>
+        </div>
+    </div>
+    <p class="dotted">A dotted border.</p>
+<p class="dashed">A dashed border.</p>
+<p class="solid">A solid border.</p>
+<p class="double">A double border.</p>
+<p class="groove">A groove border.</p>
+<p class="ridge">A ridge border.</p>
+<p class="inset">An inset border.</p>
+<p class="outset">An outset border.</p>
+<p class="none">No border.</p>
+<p class="hidden">A hidden border.</p>
+<p class="mix">A mixed border.</p>
+</body>
+</html>
+<!-- Margin' height+Border's height+Padding's height is equal to the total height of the element and width is also same as per the margin and pedding and border's width-->
+ <!-- different CSS Selector in CSS
+  1. tag name selector
+  2.id selector
+  3.calss selector
+  4.Universal Selector
+  5.Group Selector
+  6.Combinator Selector 
+  CSS has 4 main combinators:
+
+Descendant selector ( )
+
+Child selector (>)
+
+Adjacent sibling selector (+)
+
+General sibling selector (~)
+  -->

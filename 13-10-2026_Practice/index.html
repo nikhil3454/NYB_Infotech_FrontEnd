@@ -1,0 +1,614 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Complete Practice</title>
+
+    <style>
+        /* =====================================
+           GENERAL STYLES
+        ===================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f2f4f8;
+            color: #222;
+        }
+
+        h1, h2, h3 {
+            color: #17365d;
+        }
+
+        section {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .demo {
+            padding: 15px;
+            background-color: #e8f1ff;
+            border: 2px solid #4a78b8;
+            margin-bottom: 15px;
+        }
+
+        /* =====================================
+           1. CSS BOX MODEL
+        ===================================== */
+
+        .content-box {
+            box-sizing: content-box;
+            width: 200px;
+            padding: 20px;
+            border: 5px solid steelblue;
+            margin: 10px;
+            background-color: lightblue;
+        }
+
+        .border-box {
+            box-sizing: border-box;
+            width: 200px;
+            padding: 20px;
+            border: 5px solid seagreen;
+            margin: 10px;
+            background-color: lightgreen;
+        }
+
+        .padding-demo {
+            padding: 20px 30px;
+            background-color: lightyellow;
+            border: 2px solid orange;
+        }
+
+        .margin-demo {
+            margin: 20px;
+            padding: 10px;
+            border: 2px solid red;
+            background-color: #ffe2e2;
+        }
+
+        .margin-collapse-one {
+            margin-bottom: 30px;
+            background-color: #d9eaff;
+            padding: 10px;
+        }
+
+        .margin-collapse-two {
+            margin-top: 20px;
+            background-color: #d9f5df;
+            padding: 10px;
+        }
+
+        .overflow-demo {
+            width: 250px;
+            height: 100px;
+            border: 2px solid black;
+            margin: 10px 0;
+            background-color: #fff0ce;
+        }
+
+        .overflow-visible {
+            overflow: visible;
+        }
+
+        .overflow-hidden {
+            overflow: hidden;
+        }
+
+        .overflow-scroll {
+            overflow: scroll;
+        }
+
+        .overflow-auto {
+            overflow: auto;
+        }
+
+        .long-content {
+            width: 350px;
+            height: 150px;
+            background-color: #f8d9d9;
+            padding: 10px;
+        }
+
+        .outline-demo {
+            margin: 10px;
+            padding: 10px;
+            border: 3px solid black;
+            outline: 3px dashed red;
+            outline-offset: 4px;
+        }
+
+        /* =====================================
+           2. DISPLAY PROPERTIES
+        ===================================== */
+
+        .block-demo {
+            display: block;
+            background-color: lightblue;
+            margin-bottom: 5px;
+            padding: 10px;
+        }
+
+        .inline-demo {
+            display: inline;
+            background-color: yellow;
+            padding: 5px;
+        }
+
+        .inline-block-demo {
+            display: inline-block;
+            width: 130px;
+            height: 70px;
+            padding: 10px;
+            margin: 5px;
+            background-color: lightgreen;
+            border: 1px solid green;
+        }
+
+        .display-none-demo {
+            display: none;
+        }
+
+        .visibility-hidden-demo {
+            visibility: hidden;
+        }
+
+        .display-box {
+            display: inline-block;
+            width: 100px;
+            padding: 15px;
+            background-color: lightblue;
+            border: 1px solid blue;
+            text-align: center;
+        }
+
+        /* =====================================
+           3. POSITIONING
+        ===================================== */
+
+        .position-container {
+            position: relative;
+            height: 260px;
+            border: 2px dashed #777;
+            background-color: #f7f7f7;
+            padding: 10px;
+        }
+
+        .position-box {
+            width: 130px;
+            height: 60px;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        .static-demo {
+            position: static;
+            background-color: gray;
+        }
+
+        .relative-demo {
+            position: relative;
+            top: 10px;
+            left: 20px;
+            background-color: steelblue;
+        }
+
+        .absolute-demo {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background-color: crimson;
+        }
+
+        .zindex-one {
+            position: absolute;
+            top: 100px;
+            left: 20px;
+            background-color: orange;
+            z-index: 1;
+        }
+
+        .zindex-two {
+            position: absolute;
+            top: 125px;
+            left: 70px;
+            background-color: purple;
+            z-index: 2;
+        }
+
+        .sticky-demo {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            padding: 12px;
+            background-color: #17365d;
+            color: white;
+        }
+
+        .fixed-demo {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            z-index: 100;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 8px;
+            background-color: #17365d;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* =====================================
+           4. FLOAT AND CLEAR
+        ===================================== */
+
+        .float-container {
+            display: flow-root;
+            padding: 10px;
+            background-color: #f1f8ff;
+            border: 2px solid steelblue;
+        }
+
+        .float-left {
+            float: left;
+            width: 120px;
+            height: 100px;
+            margin-right: 15px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: lightblue;
+            border: 2px solid steelblue;
+            text-align: center;
+        }
+
+        .float-right {
+            float: right;
+            width: 120px;
+            height: 100px;
+            margin-left: 15px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: lightgreen;
+            border: 2px solid seagreen;
+            text-align: center;
+        }
+
+        .clear-demo {
+            clear: both;
+            background-color: #ffe2e2;
+            padding: 15px;
+            border: 2px solid red;
+        }
+
+        /* =====================================
+           RESPONSIVE ADJUSTMENT
+        ===================================== */
+
+        @media (max-width: 500px) {
+            body {
+                padding: 10px;
+            }
+
+            section {
+                padding: 12px;
+            }
+
+            .content-box,
+            .border-box {
+                max-width: 100%;
+            }
+
+            .overflow-demo {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>CSS Complete Practice Project</h1>
+    <p>Explore the Box Model, Display, Positioning, Float and Clear.</p>
+
+    <!-- =====================================
+         1. BOX MODEL
+    ====================================== -->
+
+    <section>
+        <h2>1. CSS Box Model</h2>
+
+        <h3>Content, Padding, Border and Margin</h3>
+
+        <div class="padding-demo">
+            This box has 20px vertical padding,
+            30px horizontal padding and a border.
+        </div>
+
+        <div class="margin-demo">
+            This box has 20px margin outside its border.
+        </div>
+
+        <h3>Width and Height</h3>
+
+        <div class="demo" style="width: 250px; height: 100px;">
+            Width: 250px<br>
+            Height: 100px
+        </div>
+
+        <h3>content-box vs border-box</h3>
+
+        <p>Content-box: declared width is 200px.
+           Total width is 250px.</p>
+        <div class="content-box">
+            Content-box
+        </div>
+
+        <p>Border-box: total declared width is 200px.</p>
+        <div class="border-box">
+            Border-box
+        </div>
+
+        <h3>Margin Collapse</h3>
+
+        <div class="margin-collapse-one">
+            First box: margin-bottom: 30px
+        </div>
+
+        <div class="margin-collapse-two">
+            Second box: margin-top: 20px
+        </div>
+
+        <p>
+            The vertical margins collapse to 30px
+            in this example, rather than 50px.
+        </p>
+
+        <h3>Overflow</h3>
+
+        <p>overflow: visible</p>
+        <div class="overflow-demo overflow-visible">
+            <div class="long-content">
+                This content is wider and taller than
+                its parent. It can extend outside the box.
+            </div>
+        </div>
+
+        <p>overflow: hidden</p>
+        <div class="overflow-demo overflow-hidden">
+            <div class="long-content">
+                Extra content is clipped at the boundary.
+            </div>
+        </div>
+
+        <p>overflow: scroll</p>
+        <div class="overflow-demo overflow-scroll">
+            <div class="long-content">
+                Scroll horizontally and vertically
+                to inspect this larger content.
+            </div>
+        </div>
+
+        <p>overflow: auto</p>
+        <div class="overflow-demo overflow-auto">
+            <div class="long-content">
+                Scrollbars are available when required.
+            </div>
+        </div>
+
+        <h3>Outline vs Border</h3>
+
+        <div class="outline-demo">
+            Black border and red dashed outline
+        </div>
+
+    </section>
+
+    <!-- =====================================
+         2. DISPLAY
+    ====================================== -->
+
+    <section>
+        <h2>2. Display Properties</h2>
+
+        <h3>display: block</h3>
+
+        <div class="block-demo">Block 1</div>
+        <div class="block-demo">Block 2</div>
+
+        <h3>display: inline</h3>
+
+        <p>
+            Text with
+            <span class="inline-demo">inline element 1</span>
+            and
+            <span class="inline-demo">inline element 2</span>
+            on the same line when space permits.
+        </p>
+
+        <h3>display: inline-block</h3>
+
+        <div class="inline-block-demo">Box 1</div>
+        <div class="inline-block-demo">Box 2</div>
+        <div class="inline-block-demo">Box 3</div>
+
+        <h3>display: none</h3>
+
+        <div class="display-box">First</div>
+        <div class="display-box display-none-demo">Hidden</div>
+        <div class="display-box">Third</div>
+
+        <p>The second box is removed from the layout.</p>
+
+        <h3>visibility: hidden</h3>
+
+        <div class="display-box">First</div>
+        <div class="display-box visibility-hidden-demo">
+            Hidden
+        </div>
+        <div class="display-box">Third</div>
+
+        <p>The second box is invisible, but its space remains.</p>
+
+    </section>
+
+    <!-- =====================================
+         3. POSITIONING
+    ====================================== -->
+
+    <section>
+        <h2>3. Positioning</h2>
+
+        <h3>static, relative, absolute and z-index</h3>
+
+        <p>
+            The relative box is offset from its original position.
+            The absolute box is positioned relative to this container.
+            The orange and purple boxes overlap to demonstrate z-index.
+        </p>
+
+        <div class="position-container">
+
+            <div class="position-box static-demo">
+                Static
+            </div>
+
+            <div class="position-box relative-demo">
+                Relative
+            </div>
+
+            <div class="position-box absolute-demo">
+                Absolute
+            </div>
+
+            <div class="position-box zindex-one">
+                z-index: 1
+            </div>
+
+            <div class="position-box zindex-two">
+                z-index: 2
+            </div>
+
+        </div>
+
+        <h3>position: sticky</h3>
+
+        <p>
+            Scroll the page to see how the sticky heading behaves.
+            It sticks to the top of its scrolling area when it
+            reaches the top.
+        </p>
+
+        <div class="sticky-demo">
+            I am a sticky element (top: 0).
+        </div>
+
+        <p>Scroll down to observe the sticky element.</p>
+        <p>Extra content for scrolling...</p>
+        <p>Extra content for scrolling...</p>
+        <p>Extra content for scrolling...</p>
+
+        <h3>position: fixed</h3>
+
+        <p>
+            The "Fixed Button" at the bottom-right of the browser
+            stays in place as you scroll the page.
+        </p>
+
+    </section>
+
+    <!-- =====================================
+         4. FLOAT AND CLEAR
+    ====================================== -->
+
+    <section>
+        <h2>4. Float and Clear</h2>
+
+        <h3>float: left</h3>
+
+        <div class="float-container">
+
+            <div class="float-left">
+                Float Left
+            </div>
+
+            <p>
+                This paragraph wraps around the floated box.
+                The float is positioned on the left, allowing
+                the text to occupy the space to its right.
+                As the text continues, it can flow underneath
+                the floated element when there is no longer
+                enough horizontal space beside it.
+            </p>
+
+        </div>
+
+        <h3>float: right</h3>
+
+        <div class="float-container">
+
+            <div class="float-right">
+                Float Right
+            </div>
+
+            <p>
+                This paragraph wraps around the floated box
+                on its left side. Float can be useful for
+                placing illustrations beside text in articles
+                and other text-heavy layouts.
+            </p>
+
+        </div>
+
+        <h3>clear: both</h3>
+
+        <div class="float-container">
+
+            <div class="float-left">
+                Float Left
+            </div>
+
+            <div class="float-right">
+                Float Right
+            </div>
+
+            <p>
+                This text is between the floated elements
+                and may wrap around them.
+            </p>
+
+            <div class="clear-demo">
+                This footer uses clear: both, so it moves
+                below the left and right floats.
+            </div>
+
+        </div>
+
+        <h3>display: flow-root</h3>
+
+        <p>
+            The float containers use display: flow-root
+            so their height includes the floated children.
+        </p>
+
+    </section>
+
+    <!-- Fixed positioning example -->
+    <button class="fixed-demo"
+            onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        Back to Top
+    </button>
+
+</body>
+</html>

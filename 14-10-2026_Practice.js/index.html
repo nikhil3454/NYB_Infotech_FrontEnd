@@ -1,0 +1,832 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox and CSS Grid Practice</title>
+
+    <style>
+        /* GENERAL STYLING */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f3f5f9;
+            color: #222;
+        }
+
+        h1 {
+            text-align: center;
+            color: #173b68;
+        }
+
+        h2 {
+            color: #075e91;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            margin-bottom: 8px;
+        }
+
+        section {
+            background: white;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #00000012;
+        }
+
+        .demo {
+            background: #eaf0f8;
+            padding: 12px;
+            margin: 12px 0;
+            border: 2px dashed #8b9db5;
+            border-radius: 6px;
+        }
+
+        .item {
+            background: #2674c8;
+            color: white;
+            padding: 18px;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .note {
+            background: #fff4d6;
+            padding: 12px;
+            border-left: 4px solid #e5a000;
+            margin-top: 10px;
+        }
+
+        code {
+            color: #a12626;
+            font-weight: bold;
+        }
+
+        /* =====================================
+           FLEXBOX
+        ===================================== */
+
+        /* 1. FLEX CONTAINER AND FLEX ITEMS */
+        .flex-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* 2. FLEX-DIRECTION */
+        .row-direction {
+            flex-direction: row;
+        }
+
+        .column-direction {
+            flex-direction: column;
+        }
+
+        .row-reverse {
+            flex-direction: row-reverse;
+        }
+
+        .column-reverse {
+            flex-direction: column-reverse;
+        }
+
+        /* 3. JUSTIFY-CONTENT */
+        .justify-start {
+            justify-content: flex-start;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .justify-end {
+            justify-content: flex-end;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .justify-around {
+            justify-content: space-around;
+        }
+
+        .justify-evenly {
+            justify-content: space-evenly;
+        }
+
+        /* 4. ALIGN-ITEMS */
+        .align-start {
+            align-items: flex-start;
+        }
+
+        .align-center {
+            align-items: center;
+        }
+
+        .align-end {
+            align-items: flex-end;
+        }
+
+        .align-stretch {
+            align-items: stretch;
+        }
+
+        .align-baseline {
+            align-items: baseline;
+        }
+
+        .align-demo {
+            height: 150px;
+        }
+
+        .align-demo .item:nth-child(2) {
+            padding: 35px 18px;
+        }
+
+        /* 5. ALIGN-CONTENT */
+        .align-content-demo {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-between;
+            height: 220px;
+        }
+
+        .align-content-demo .item {
+            width: 30%;
+        }
+
+        /* 6. FLEX-WRAP */
+        .wrap-demo {
+            flex-wrap: wrap;
+        }
+
+        .wrap-demo .item {
+            flex: 0 0 120px;
+        }
+
+        .nowrap-demo {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+
+        .nowrap-demo .item {
+            flex: 0 0 120px;
+        }
+
+        /* 7. GAP */
+        .gap-small {
+            gap: 5px;
+        }
+
+        .gap-large {
+            gap: 25px;
+        }
+
+        /* 8. ORDER */
+        .order-1 {
+            order: 1;
+        }
+
+        .order-2 {
+            order: 2;
+        }
+
+        .order-3 {
+            order: 3;
+        }
+
+        /* 9. FLEX-GROW */
+        .grow-demo .item {
+            flex-grow: 1;
+        }
+
+        .grow-demo .grow-more {
+            flex-grow: 3;
+        }
+
+        /* 10. FLEX-SHRINK */
+        .shrink-demo {
+            width: 100%;
+        }
+
+        .shrink-demo .item {
+            flex-basis: 200px;
+            flex-shrink: 1;
+        }
+
+        .shrink-demo .no-shrink {
+            flex-shrink: 0;
+        }
+
+        /* 11. FLEX-BASIS */
+        .basis-demo .item {
+            flex-grow: 0;
+            flex-shrink: 1;
+        }
+
+        .basis-small {
+            flex-basis: 100px;
+        }.basis-large {
+            flex-basis: 220px;
+        }
+
+        /* =====================================
+           CSS GRID
+        ===================================== */
+
+        /* 1. GRID CONTAINER AND GRID ITEMS */
+        .grid-container {
+            display: grid;
+            gap: 10px;
+        }
+
+        /* 2. GRID-TEMPLATE-COLUMNS */
+        .columns-demo {
+            grid-template-columns: 150px 200px 150px 300px;
+        }
+
+        /* 3. GRID-TEMPLATE-ROWS */
+        .rows-demo {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 70px 120px 90px;
+        }
+
+        /* 4. GRID-COLUMN */
+        .column-span-demo {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .column-span-demo .wide-item {
+            grid-column: 1/3;
+        }
+
+        /* 5. GRID-ROW */
+        .row-span-demo {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 80px);
+        }
+
+        .row-span-demo .tall-item {
+            grid-row: 1 / 3;
+        }
+
+        /* 6. GAP: ROW-GAP AND COLUMN-GAP */
+        .grid-gap-demo {
+            grid-template-columns: repeat(3, 1fr);
+            row-gap: 25px;
+            column-gap: 10px;
+        }
+
+        /* 7. REPEAT() */
+        .repeat-demo {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        /* 8. FR UNIT */
+        .fr-demo {
+            grid-template-columns: 1fr 2fr 1fr;
+        }
+
+        /* 9. MINMAX() */
+        .minmax-demo {
+            grid-template-columns: repeat(3, minmax(100px, 1fr));
+        }
+
+        /* 10. GRID ALIGNMENT */
+        .alignment-demo {
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(2, 80px);
+            justify-content: space-evenly;
+            align-content: space-evenly;
+            justify-items: center;
+            align-items: center;
+            height: 300px;
+            gap: 5px;
+        }
+
+        .alignment-demo .item {
+            width: 70px;
+            height: 50px;
+            padding: 10px;
+        }
+
+        /* 11. GRID AREAS */
+        .page-layout {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: 1fr 3fr;
+            grid-template-rows: 70px 200px 70px;
+
+            grid-template-areas:
+                "header header"
+                "sidebar main"
+                "footer footer";
+        }
+
+        .header {
+            grid-area: header;
+            background: #075e91;
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+            background: #398b66;
+        }
+
+        .main {
+            grid-area: main;
+            background: #b66c29;
+        }
+
+        .footer {
+            grid-area: footer;
+            background: #6547a5;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            section {
+                padding: 12px;
+            }
+
+            .columns-demo {
+                grid-template-columns: repeat(3, minmax(80px, 1fr));
+            }
+
+            .page-layout {
+                grid-template-columns: 1fr;
+                grid-template-rows: 60px 80px 180px 60px;
+                grid-template-areas:
+                    "header"
+                    "sidebar"
+                    "main"
+                    "footer";
+            }
+
+            .alignment-demo {
+                grid-template-columns: repeat(3, 70px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>CSS Flexbox and Grid Practice</h1>
+
+    <!-- =====================================
+         FLEXBOX SECTION
+    ====================================== -->
+
+    <section>
+        <h2>Flexbox</h2>
+
+        <h3>Flex Container and Flex Items</h3>
+
+        <div class="demo flex-container">
+            <div class="item">Item 1</div>
+            <div class="item">Item 2</div>
+            <div class="item">Item 3</div>
+        </div>
+
+        <p>
+            <code>display: flex;</code> makes the parent a flex container.
+            Its direct children become flex items.
+        </p>
+
+        <div class="note">
+            The parent controls the arrangement of its direct children.
+        </div>
+    </section>
+
+    <section>
+        <h3>flex-direction</h3>
+
+        <p><code>flex-direction: row;</code> — items appear horizontally.</p>
+        <div class="demo flex-container row-direction">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+        </div>
+
+        <p><code>flex-direction: column;</code> — items appear vertically.</p>
+        <div class="demo flex-container column-direction">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+        </div>
+
+        <p><code>flex-direction: row-reverse;</code> — horizontal order is reversed.</p>
+        <div class="demo flex-container row-reverse">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+        </div>
+
+        <p><code>flex-direction: column-reverse;</code> — vertical order is reversed.</p>
+        <div class="demo flex-container column-reverse">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+        </div>
+    </section>
+
+    <section>
+        <h3>justify-content</h3>
+        <p>Controls how items are distributed along the main axis.</p>
+
+        <p><code>flex-start</code></p>
+        <div class="demo flex-container justify-start">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+        </div>
+
+        <p><code>center</code></p>
+        <div class="demo flex-container justify-center">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+        </div>
+
+        <p><code>flex-end</code></p>
+        <div class="demo flex-container justify-end">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+        </div>
+
+        <p><code>space-between</code></p>
+        <div class="demo flex-container justify-between">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+        </div>
+
+        <p><code>space-around</code></p>
+        <div class="demo flex-container justify-around">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+        </div>
+
+        <p><code>space-evenly</code></p>
+        <div class="demo flex-container justify-evenly">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+        </div>
+    </section>
+
+    <section>
+        <h3>align-items</h3>
+        <p>Aligns items along the cross axis of a flex container.</p>
+
+        <p><code>align-items: flex-start;</code></p>
+        <div class="demo flex-container align-demo align-start">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+        </div>
+
+        <p><code>align-items: center;</code></p>
+        <div class="demo flex-container align-demo align-center">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+        </div>
+
+        <p><code>align-items: flex-end;</code></p>
+        <div class="demo flex-container align-demo align-end">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+        </div>
+
+        <p><code>align-items: stretch;</code></p>
+        <div class="demo flex-container align-demo align-stretch">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+        </div>
+
+        <p><code>align-items: baseline;</code></p>
+        <div class="demo flex-container align-demo align-baseline">
+            <div class="item" style="font-size: 14px;">Small text</div>
+            <div class="item" style="font-size: 28px;">Large text</div>
+            <div class="item" style="font-size: 18px;">Medium</div>
+        </div>
+    </section>
+
+    <section>
+        <h3>align-content</h3>
+        <p>
+            Controls the spacing between multiple flex lines when items wrap.
+            It requires multiple lines and extra space in the cross axis.
+        </p>
+
+        <div class="demo align-content-demo">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+            <div class="item">6</div>
+        </div>
+
+        <p><code>align-content: space-between;</code></p>
+    </section>
+
+    <section>
+        <h3>flex-wrap</h3>
+
+        <p><code>flex-wrap: wrap;</code> — items move onto new lines if needed.</p>
+        <div class="demo flex-container wrap-demo">
+            <div class="item">1</div><div class="item">2</div>
+            <div class="item">3</div><div class="item">4</div>
+            <div class="item">5</div><div class="item">6</div>
+        </div>
+
+        <p><code>flex-wrap: nowrap;</code> — items remain on one line.</p>
+        <div class="demo flex-container nowrap-demo">
+            <div class="item">1</div><div class="item">2</div>
+            <div class="item">3</div><div class="item">4</div>
+            <div class="item">5</div><div class="item">6</div>
+        </div>
+    </section>
+
+    <section>
+        <h3>gap</h3>
+
+        <p><code>gap: 5px;</code></p>
+        <div class="demo flex-container gap-small">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+        </div>
+
+        <p><code>gap: 25px;</code></p>
+        <div class="demo flex-container gap-large">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+        </div>
+    </section>
+
+    <section>
+        <h3>order</h3>
+        <p>
+            Changes the visual order of flex items. The default order is 0.
+            Smaller order values appear first.
+        </p>
+
+        <div class="demo flex-container">
+            <div class="item order-3">HTML (order: 3)</div>
+            <div class="item order-1">CSS (order: 1)</div>
+            <div class="item order-2">JavaScript (order: 2)</div>
+        </div>
+
+        <div class="note">
+            CSS order changes visual placement, not the original HTML or keyboard
+            reading order. Use it carefully for accessibility.
+        </div>
+    </section>
+
+    <section>
+        <h3>flex-grow</h3>
+        <p>
+            Controls how much available free space an item receives.
+            Here, the middle item grows three times as much as the others.
+        </p>
+
+        <div class="demo flex-container grow-demo">
+            <div class="item">Grow: 1</div>
+            <div class="item grow-more">Grow: 3</div>
+            <div class="item">Grow: 1</div>
+        </div>
+    </section>
+
+    <section>
+        <h3>flex-shrink</h3>
+        <p>
+            Controls how much an item shrinks when there is not enough space.
+            Resize the browser to see the difference.
+        </p>
+
+        <div class="demo flex-container shrink-demo">
+            <div class="item">Shrink: 1</div>
+            <div class="item no-shrink">Shrink: 0</div>
+            <div class="item">Shrink: 1</div>
+        </div>
+
+        <p>
+            <code>flex-shrink: 1;</code> allows an item to shrink.
+            <code>flex-shrink: 0;</code> prevents it from shrinking.
+        </p>
+    </section>
+
+    <section>
+        <h3>flex-basis</h3>
+        <p>
+            Sets an item's initial main-axis size before free space is
+            distributed or items shrink.
+        </p>
+
+        <div class="demo flex-container basis-demo">
+            <div class="item basis-small">Basis: 100px</div>
+            <div class="item basis-large">Basis: 220px</div>
+            <div class="item basis-small">Basis: 100px</div>
+        </div>
+    </section>
+
+    <section>
+        <h2>CSS Grid</h2>
+
+        <h3>Grid Container and Grid Items</h3>
+
+        <div class="demo grid-container" style="grid-template-columns: 1fr 1fr 1fr;">
+            <div class="item">Grid Item 1</div>
+            <div class="item">Grid Item 2</div>
+            <div class="item">Grid Item 3</div>
+            <div class="item">Grid Item 4</div>
+            <div class="item">Grid Item 5</div>
+            <div class="item">Grid Item 6</div>
+        </div>
+
+        <p>
+            <code>display: grid;</code> makes the parent a grid container.
+            Its direct children become grid items.
+        </p>
+    </section>
+
+    <section>
+        <h3>grid-template-columns</h3>
+        <p>
+            Defines the number and width of columns.
+            This example creates columns of 150px, 200px and 150px.
+        </p>
+
+        <div class="demo grid-container columns-demo">
+            <div class="item">150px</div>
+            <div class="item">200px</div>
+            <div class="item">150px</div>
+            <div class="item">300px</div>
+        </div>
+    </section>
+
+    <section>
+        <h3>grid-template-rows</h3>
+        <p>
+            Defines the height of rows. These rows are 70px, 120px and 90px.
+        </p>
+
+        <div class="demo grid-container rows-demo">
+            <div class="item">Row 1</div>
+            <div class="item">Row 1</div>
+            <div class="item">Row 1</div>
+            <div class="item">Row 2</div>
+            <div class="item">Row 2</div>
+            <div class="item">Row 2</div>
+            <div class="item">Row 3</div>
+            <div class="item">Row 3</div>
+            <div class="item">Row 3</div>
+        </div>
+    </section>
+
+    <section>
+        <h3>grid-column</h3>
+        <p>
+            Makes an item span or start and end at specified column lines.
+            <code>grid-column: 1 / 3;</code> spans from line 1 to line 3,
+            covering two columns.
+        </p>
+
+        <div class="demo grid-container column-span-demo">
+            <div class="item wide-item">Spans columns 1 and 2</div>
+            <div class="item">Column 3</div>
+            <div class="item">Column 1</div>
+            <div class="item">Column 2</div>
+            <div class="item">Column 3</div>
+        </div>
+    </section>
+
+    <section>
+        <h3>grid-row</h3>
+        <p>
+            Makes an item span rows.
+            <code>grid-row: 1 / 3;</code> spans from row line 1 to row line 3,
+            covering two rows.
+        </p>
+
+        <div class="demo grid-container row-span-demo">
+            <div class="item tall-item">Spans two rows</div>
+            <div class="item">Item 2</div>
+            <div class="item">Item 3</div>
+            <div class="item">Item 4</div>
+            <div class="item">Item 5</div>
+            <div class="item">Item 6</div>
+            <div class="item">Item 7</div>
+            <div class="item">Item 8</div>
+        </div>
+    </section>
+
+    <section>
+        <h3>gap</h3>
+        <p>
+            <code>row-gap: 25px;</code> sets space between rows.
+            <code>column-gap: 10px;</code> sets space between columns.
+        </p>
+
+        <div class="demo grid-container grid-gap-demo">
+            <div class="item">1</div><div class="item">2</div><div class="item">3</div>
+            <div class="item">4</div><div class="item">5</div><div class="item">6</div>
+        </div>
+    </section>
+
+    <section>
+        <h3>repeat()</h3>
+        <p>
+            <code>repeat(4, 1fr)</code> is a shortcut for creating four equal
+            columns.
+        </p>
+
+        <div class="demo grid-container repeat-demo">
+            <div class="item">1</div><div class="item">2</div>
+            <div class="item">3</div><div class="item">4</div>
+        </div>
+    </section>
+
+    <section>
+        <h3>fr unit</h3>
+        <p>
+            The <code>fr</code> unit distributes available grid space in
+            proportions. Here, the columns use a 1:2:1 ratio.
+        </p>
+
+        <div class="demo grid-container fr-demo">
+            <div class="item">1fr</div>
+            <div class="item">2fr</div>
+            <div class="item">1fr</div>
+        </div>
+    </section>
+
+    <section>
+        <h3>9. minmax()</h3>
+        <p>
+            <code>minmax(100px, 1fr)</code> means each column has a minimum
+            width of 100px and can grow to share available space.
+        </p>
+
+        <div class="demo grid-container minmax-demo">
+            <div class="item">Column 1</div>
+            <div class="item">Column 2</div>
+            <div class="item">Column 3</div>
+        </div>
+    </section>
+
+    <section>
+        <h3> Grid Alignment</h3>
+
+        <p>
+            <code>justify-content</code> distributes the entire grid
+            horizontally when extra space is available.
+        </p>
+        <p>
+            <code>align-content</code> distributes the entire grid vertically.
+        </p>
+        <p>
+            <code>justify-items</code> aligns each item horizontally inside
+            its grid area.
+        </p>
+        <p>
+            <code>align-items</code> aligns each item vertically inside
+            its grid area.
+        </p>
+
+        <div class="demo grid-container alignment-demo">
+            <div class="item">1</div>
+            <div class="item">2</div>
+            <div class="item">3</div>
+            <div class="item">4</div>
+            <div class="item">5</div>
+            <div class="item">6</div>
+        </div>
+    </section>
+
+    <section>
+        <h3> Grid Areas</h3>
+        <p>
+            Grid areas let you name sections of a layout and place items
+            into those named areas.
+        </p>
+
+        <div class="page-layout">
+            <div class="item header">HEADER</div>
+            <div class="item sidebar">SIDEBAR</div>
+            <div class="item main">MAIN CONTENT</div>
+            <div class="item footer">FOOTER</div>
+        </div>
+
+        <p>The CSS layout is defined using:</p>
+
+        <pre><code>grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";</code></pre>
+
+        <p>
+            The header and footer span both columns. On smaller screens,
+            the media query changes the layout into a single column.
+        </p>
+    </section>
+
+</body>
+</html>

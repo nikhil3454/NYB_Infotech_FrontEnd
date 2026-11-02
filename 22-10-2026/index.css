@@ -1,0 +1,33 @@
+/*CSS animations allow an HTML element to change its appearance, size, position, color, or other properties over a period of time.
+
+For example, you can create:
+- A heading that fades into view.
+- A circle that moves up and down.
+- A loading spinner that rotates continuously.
+- A button that grows when hovered over.
+- A card that slides into view.
+- A notification that appears with an animation.
+CSS animations use @keyframes to define the animation stages and animation properties to control how the animation runs. 
+3. Animation properties
+CSS offers several properties for controlling animations.
+Property	Purpose	Example
+animation-name	Selects the keyframes	bounce
+animation-duration	Sets the duration of one cycle	2s
+animation-delay	Waits before starting	1s
+animation-iteration-count	Controls the number of repetitions	3, infinite
+animation-timing-function	Controls the speed curve	ease-in-out
+animation-direction	Controls playback direction	alternate
+animation-fill-mode	Controls styles before or after the animation	forwards
+animation-play-state	Plays or pauses the animation	paused
+
+These can be combined into the shorthand property:
+.box {
+    animation: bounce 2s ease-in-out 1s 3 alternate;
+}
+This means:
+- Animation name: bounce
+- Duration: 2s
+- Timing function: ease-in-out
+- Delay: 1s
+- Iterations: 3
+- Direction: alternate

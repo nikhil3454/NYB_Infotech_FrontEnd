@@ -1,0 +1,664 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced CSS Practice</title>
+
+    <style>
+        /* =================================
+           1. CSS VARIABLES
+        ================================= */
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --success: #15803d;
+            --danger: #dc2626;
+            --text: #1e293b;
+            --surface: #ffffff;
+            --page-bg: #f1f5f9;
+            --radius: 14px;
+            --spacing: 20px;
+            --shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+            --transition: 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--page-bg);
+        }
+
+        /* =================================
+           2. ATTRIBUTE SELECTORS
+        ================================= */
+
+        /* Attribute exists */
+        input[required] {
+            border-left: 4px solid var(--danger);
+        }
+
+        /* Exact attribute value */
+        input[type="email"] {
+            background-color: #eff6ff;
+        }
+
+        /* Starts with */
+        a[href^="https"] {
+            color: var(--primary);
+        }
+
+        /* Contains */
+        a[href*="example"] {
+            font-weight: bold;
+        }
+
+        /* Ends with */
+        a[href$=".pdf"] {
+            color: var(--danger);
+        }
+
+        /* Contains a complete word */
+        [class~="highlight"] {
+            outline: 2px dashed var(--secondary);
+        }
+
+        /* Language equals "en" or starts with "en-" */
+        [lang|="en"] {
+            text-decoration-color: var(--success);
+        }
+
+        /* =================================
+           3. NAVIGATION
+        ================================= */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 16px 6%;
+            background: var(--surface);
+            box-shadow: var(--shadow);
+        }
+
+        nav a {
+            margin: 0 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        /* Adjacent sibling combinator */
+        nav a + a {
+            border-left: 1px solid #cbd5e1;
+            padding-left: 12px;
+        }
+
+        /* =================================
+           4. GRADIENTS
+        ================================= */
+        .hero {
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+
+            /* Linear gradient */
+            background: linear-gradient(
+                120deg,
+                var(--primary),
+                var(--secondary)
+            );
+        }
+
+        .hero h1 {
+            text-shadow: 2px 3px 5px rgba(0, 0, 0, 0.35);
+        }
+
+        /* ::before */
+        .hero h1::before {
+            content: "★ ";
+            color: #fde047;
+        }
+
+        /* ::after */
+        .hero h1::after {
+            content: " ★";
+            color: #fde047;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* =================================
+           5. LAYOUT AND COMBINATORS
+        ================================= */
+        main {
+            width: min(1100px, 92%);
+            margin: 35px auto;
+        }
+
+        .section-title {
+            margin-top: 35px;
+        }
+
+        /* Descendant: every p inside .info */
+        .info p {
+            color: #475569;
+        }
+
+        /* Child: direct p children only */
+        .info > p {
+            border-left: 3px solid var(--primary);
+            padding-left: 12px;
+        }
+
+        /* General sibling: all later p siblings */
+        h3 ~ p {
+            font-style: italic;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--spacing);
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            padding: var(--spacing);
+            border-radius: var(--radius);
+            background: var(--surface);
+            box-shadow: var(--shadow);
+
+            transition:
+                transform var(--transition),
+                box-shadow var(--transition),
+                opacity var(--transition);
+        }
+
+        /* Pseudo-class: hover */
+        .card:hover {
+            transform: translateY(-7px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+        }
+
+        /* First child */
+        .cards .card:first-child {
+            border-top: 5px solid var(--success);
+        }
+
+        /* Last child */
+        .cards .card:last-child {
+            border-top: 5px solid var(--secondary);
+        }
+
+        /* Every second card */
+        .cards .card:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        /* Third card */
+        .cards .card:nth-child(3) {
+            border-top: 5px solid #f59e0b;
+        }
+
+        /* ::first-letter */
+        .card p::first-letter {
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+
+        /* ::first-line */
+        .description::first-line {
+            font-weight: bold;
+        }
+
+        /* =================================
+           6. BUTTONS AND PSEUDO-CLASSES
+        ================================= */
+        .btn {
+            display: inline-block;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 18px;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+
+            transition:
+                background-color var(--transition),
+                transform var(--transition),
+                opacity var(--transition);
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        /* Active state */
+        .btn:active {
+            transform: scale(0.94);
+        }
+
+        /* =================================
+           7. FORM AND FOCUS
+        ================================= */
+        .form-box {
+            margin-top: 30px;
+            padding: var(--spacing);
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            margin-top: 5px;
+            padding: 11px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            font: inherit;
+        }
+
+        /* Focus state */
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: 3px solid #bfdbfe;
+            border-color: var(--primary);
+        }
+
+        /* Keyboard focus */
+        .btn:focus-visible {
+            outline: 3px solid #f59e0b;
+            outline-offset: 3px;
+        }
+
+        /* Checked checkbox */
+        input[type="checkbox"]:checked {
+            accent-color: var(--success);
+        }
+
+        /* Disabled control */
+        input:disabled {
+            background: #e2e8f0;
+            cursor: not-allowed;
+        }
+
+        /* =================================
+           8. OPACITY
+        ================================= */
+        .muted {
+            opacity: 0.55;
+            transition: opacity var(--transition);
+        }
+
+        .muted:hover {
+            opacity: 1;
+        }
+
+        /* =================================
+           9. RADIAL AND CONIC GRADIENTS
+        ================================= */
+        .gradient-demo {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .gradient-box {
+            min-height: 130px;
+            display: grid;
+            place-items: center;
+            color: white;
+            font-weight: bold;
+            border-radius: var(--radius);
+            text-shadow: 1px 1px 3px black;
+        }
+
+        .radial {
+            background: radial-gradient(
+                circle,
+                #fef08a,
+                #f97316,
+                #9a3412
+            );
+        }
+
+        .conic {
+            background: conic-gradient(
+                red,
+                yellow,
+                lime,
+                cyan,
+                blue,
+                magenta,
+                red
+            );
+        }
+
+        /* =================================
+           10. TRANSFORM EXAMPLES
+        ================================= */
+        .transform-box {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding: 25px 5px;
+        }
+
+        .shape {
+            width: 90px;
+            height: 90px;
+            display: grid;
+            place-items: center;
+            background: var(--primary);
+            color: white;
+            border-radius: 10px;
+
+            transition: transform 0.4s ease;
+        }
+
+        .move:hover {
+            transform: translate(10px, -10px);
+        }
+
+        .grow:hover {
+            transform: scale(1.2);
+        }
+
+        .rotate:hover {
+            transform: rotate(15deg);
+        }
+
+        .slant:hover {
+            transform: skew(10deg);
+        }
+
+        .pivot:hover {
+            transform-origin: top left;
+            transform: rotate(15deg);
+        }
+
+        /* =================================
+           11. PSEUDO-ELEMENTS
+        ================================= */
+        .note::before {
+            content: "TIP: ";
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .note::after {
+            content: " ✓";
+            color: var(--success);
+        }
+
+        ::selection {
+            background: #bfdbfe;
+            color: #1e3a8a;
+        }
+
+        /* =================================
+           12. LIST POSITION SELECTORS
+        ================================= */
+        .topics li:first-child {
+            color: var(--success);
+        }
+
+        .topics li:last-child {
+            color: var(--danger);
+        }
+
+        .topics li:nth-child(odd) {
+            background: #e2e8f0;
+        }
+
+        .topics li {
+            padding: 6px;
+        }
+
+        /* =================================
+           13. RESPONSIVE DESIGN
+        ================================= */
+        @media (max-width: 600px) {
+            .hero {
+                padding: 40px 15px;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .gradient-demo {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <strong>CSS Playground</strong>
+
+        <div>
+            <a href="#cards">Cards</a>
+            <a href="#gradients">Gradients</a>
+            <a href="#transforms">Transforms</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Learn Advanced CSS</h1>
+        <p>
+            Explore selectors, pseudo-classes, gradients,
+            shadows, opacity, transitions and transforms.
+        </p>
+    </header>
+
+    <main>
+        <section class="info">
+            <h2 class="section-title">CSS Combinators</h2>
+
+            <p>
+                This is a direct child paragraph selected
+                by the child combinator.
+            </p>
+
+            <div>
+                <p>
+                    This nested paragraph matches the
+                    descendant selector, but not the
+                    direct-child selector.
+                </p>
+            </div>
+
+            <h3>Sibling example</h3>
+            <p>This paragraph is selected by h3 ~ p.</p>
+            <p>This paragraph is also selected by h3 ~ p.</p>
+        </section>
+
+        <section id="cards">
+            <h2 class="section-title">Pseudo-classes and Shadows</h2>
+
+            <div class="cards">
+                <article class="card">
+                    <h3>Selectors</h3>
+                    <p class="description">
+                        Select elements using their attributes
+                        and relationships with other elements.
+                    </p>
+                    <button class="btn">Explore</button>
+                </article>
+
+                <article class="card">
+                    <h3>Gradients</h3>
+                    <p>
+                        Create colorful backgrounds using
+                        linear, radial and conic gradients.
+                    </p>
+                    <button class="btn">Explore</button>
+                </article>
+
+                <article class="card">
+                    <h3>Transitions</h3>
+                    <p>
+                        Smoothly animate color, shadow,
+                        opacity and transform changes.
+                    </p>
+                    <button class="btn">Explore</button>
+                </article>
+
+                <article class="card">
+                    <h3>Transforms</h3>
+                    <p>
+                        Move, rotate, scale and skew elements
+                        using the transform property.
+                    </p>
+                    <button class="btn">Explore</button>
+                </article>
+            </div>
+        </section>
+
+        <section id="gradients">
+            <h2 class="section-title">Gradient Examples</h2>
+
+            <div class="gradient-demo">
+                <div class="gradient-box radial">
+                    Radial Gradient
+                </div>
+
+                <div class="gradient-box conic">
+                    Conic Gradient
+                </div>
+            </div>
+        </section>
+
+        <section id="transforms">
+            <h2 class="section-title">Hover Over Each Shape</h2>
+
+            <p class="note">
+                Move your pointer over each box to see a transform.
+            </p>
+
+            <div class="transform-box">
+                <div class="shape move">Move</div>
+                <div class="shape grow">Scale</div>
+                <div class="shape rotate">Rotate</div>
+                <div class="shape slant">Skew</div>
+                <div class="shape pivot">Origin</div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">nth-child Examples</h2>
+
+            <ul class="topics">
+                <li>Attribute selectors</li>
+                <li>Combinators</li>
+                <li>Pseudo-classes</li>
+                <li>Pseudo-elements</li>
+                <li>CSS variables</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-title">Opacity Example</h2>
+
+            <p class="muted">
+                This text starts partially transparent.
+                Hover over it to restore full opacity.
+            </p>
+
+            <p class="highlight">
+                This paragraph demonstrates the [class~="highlight"]
+                attribute selector.
+            </p>
+
+            <p lang="en-US">
+                This paragraph matches [lang|="en"].
+            </p>
+
+            <a href="https://example.com">Example HTTPS link</a>
+            <br>
+            <a href="document.pdf">Example PDF link</a>
+        </section>
+
+        <section id="contact" class="form-box">
+            <h2>Contact Form</h2>
+
+            <form>
+                <label for="name">Name</label>
+                <input
+                    id="name"
+                    type="text"
+                    placeholder="Enter your name"
+                    required
+                >
+
+                <label for="email">Email</label>
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+                <label for="message">Message</label>
+                <textarea
+                    id="message"
+                    rows="4"
+                    placeholder="Enter your message"
+                ></textarea>
+
+                <label>
+                    <input type="checkbox">
+                    Subscribe to updates
+                </label>
+
+                <br><br>
+
+                <button class="btn" type="submit">
+                    Submit
+                </button>
+
+                <input
+                    type="text"
+                    value="Disabled example"
+                    disabled
+                >
+            </form>
+        </section>
+    </main>
+
+</body>
+</html>

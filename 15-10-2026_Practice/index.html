@@ -1,0 +1,659 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced CSS Complete Demo</title>
+
+    <style>
+        /* =========================================
+           1. CSS VARIABLES AND REUSABLE STYLES
+        ========================================= */
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #7c3aed;
+            --success-color: #16a34a;
+            --danger-color: #dc2626;
+
+            --text-color: #1f2937;
+            --background-color: #f3f4f6;
+            --card-color: #ffffff;
+
+            --space-small: 8px;
+            --space-medium: 16px;
+            --space-large: 24px;
+
+            --font-body: Arial, sans-serif;
+            --font-size: 16px;
+            --border-radius: 12px;
+        }
+
+        /* =========================================
+           2. GENERAL STYLING AND INHERITANCE
+        ========================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px 16px;
+            font-family: var(--font-body);
+            font-size: var(--font-size);
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+        }
+
+        p {
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background-color: var(--card-color);
+            margin-bottom: var(--space-large);
+            padding: var(--space-large);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* =========================================
+           3. CSS SPECIFICITY
+        ========================================= */
+
+        p {
+            color: blue;
+        }
+
+        .specificity-text {
+            color: green;
+        }
+
+        #specificity-demo {
+            color: red;
+        }
+
+        /* ID wins over class and element selectors
+           when cascade priority is otherwise equal. */
+
+        /* =========================================
+           4. CSS INHERITANCE
+        ========================================= */
+
+        .parent {
+            color: darkgreen;
+            font-family: Georgia, serif;
+            border: 2px solid #9ca3af;
+            padding: var(--space-medium);
+        }
+
+        .parent p {
+            /* Inherits the parent's color */
+            color: inherit;
+        }
+
+        .parent .initial-example {
+            /* Uses the initial value of color */
+            color: initial;
+        }
+
+        .parent .unset-example {
+            /* color is inherited, so unset inherits here */
+            color: unset;
+        }
+
+        /* =========================================
+           5. PSEUDO-CLASSES
+        ========================================= */
+
+        .demo-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s,
+                        transform 0.2s;
+        }
+
+        /* Hover state */
+        .demo-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Focus state */
+        .demo-button:focus-visible {
+            outline: 10px solid orange;
+            outline-offset: 10px;
+        }
+
+        /* Active state */
+        .demo-button:active {
+            transform: scale(1.5);
+        }
+
+        /* First child */
+        .fruit-list li:first-child {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        /* Last child */
+        .fruit-list li:last-child {
+            color: var(--danger-color);
+        }
+
+        /* Even-numbered children */
+        .fruit-list li:nth-child(even) {
+            background-color: #dbeafe;
+        }
+
+        /* Odd-numbered children */
+        .number-list li:nth-child(odd) {
+            background-color: #fef3c7;
+        }
+
+        /* Every third child */
+        .number-list li:nth-child(3n) {
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        li {
+            padding: 5px;
+            margin: 3px 0;
+        }
+
+        /* =========================================
+           6. PSEUDO-ELEMENTS
+        ========================================= */
+
+        .before-demo::before {
+            content: "★ ";
+            color: orange;
+        }
+
+        .after-demo::after {
+            content: " ✓";
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .first-letter-demo::first-letter {
+            font-size: 36px;
+            color: var(--danger-color);
+            font-weight: bold;
+        }
+
+        .first-line-demo::first-line {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* =========================================
+           7. ATTRIBUTE SELECTORS
+        ========================================= */
+
+        /* Attribute exists */
+        input[required] {
+            border-left: 4px solid var(--danger-color);
+        }
+
+        /* Exact attribute value */
+        input[type="email"] {
+            background-color: aquamarine;
+        }
+
+        /* Attribute contains a complete word */
+        [class~="featured"] {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        /* Attribute is exact value or followed by hyphen */
+        [lang|="en"] {
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+
+        /* Attribute starts with */
+        a[href^="https://"] {
+            color: var(--success-color);
+        }
+
+        /* Attribute ends with */
+        a[href$=".pdf"] {
+            color: var(--danger-color);
+        }
+
+        /* Attribute contains a substring */
+        a[href*="example"] {
+            font-weight: bold;
+        }
+
+        /* Focus styling for form controls */
+        input:focus,
+        textarea:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0 12px;
+            border: 1px solid #9ca3af;
+            border-radius: 6px;
+            font: inherit;
+        }
+
+        /* =========================================
+           8. CSS VARIABLES AND var() FALLBACKS
+        ========================================= */
+
+        .variable-demo {
+            background-color: var(--primary-color, blue);
+            color: white;
+            padding: var(--space-medium);
+            border-radius: var(--border-radius);
+            margin-top: var(--space-medium);
+        }
+
+        .variable-demo h3 {
+            color: inherit;
+        }
+
+        /* =========================================
+           9. GRADIENTS
+        ========================================= */
+
+        .linear-gradient {
+            padding: 24px;
+            margin: 12px 0;
+            color: white;
+            border-radius: 8px;
+            background: linear-gradient(
+                to right,red,yellow
+            );
+        }
+
+        .radial-gradient {
+            padding: 24px;
+            margin: 12px 0;
+            color: white;
+            border-radius: 8px;
+            background: radial-gradient(
+                circle,
+                red,yellow
+            );
+        }
+
+        .conic-gradient {
+            padding: 24px;
+            margin: 12px 0;
+            color: white;
+            border-radius: 8px;
+            background: conic-gradient(
+                from 45deg,
+                #2563eb,
+                #7c3aed,
+                #ec4899,
+                #2563eb
+            );
+        }
+
+        /* =========================================
+           10. BOX SHADOW AND TEXT SHADOW
+        ========================================= */
+
+        .shadow-box {
+            padding: 20px;
+            margin: 20px 5px;
+            background-color: white;
+            border-radius: 8px;
+
+            /* offset-x offset-y blur spread color */
+            box-shadow: 4px 6px 15px 2px
+                        rgba(0, 0, 0, 0.2);
+        }
+
+        .inset-shadow {
+            box-shadow: inset 0 2px 8px
+                        rgba(0, 0, 0, 0.2);
+        }
+
+        .text-shadow-demo {
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px
+                         rgba(0, 0, 0, 0.3);
+        }
+
+        /* =========================================
+           11. OPACITY
+        ========================================= */
+
+        .opacity-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-medium);
+        }
+
+        .opacity-box {
+            flex: 1 1 120px;
+            padding: 20px;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+        }
+
+        .opacity-25 {
+            opacity: 0.25;
+        }
+
+        .opacity-50 {
+            opacity: 0.5;
+        }
+
+        .opacity-75 {
+            opacity: 0.75;
+        }
+
+        .opacity-100 {
+            opacity: 1;
+        }
+
+        /* Transparent background only:
+           text remains fully opaque. */
+        .transparent-background {
+            background-color: rgba(37, 99, 235, 0.25);
+            color: #1f2937;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        /* =========================================
+           12. !important AND CONFLICTS
+        ========================================= */
+
+        .important-demo {
+            color: green;
+        }
+
+        /* This important declaration wins against
+           the normal class declaration above. */
+        .important-demo {
+            color: red !important;
+        }
+
+        /* =========================================
+           13. RESPONSIVE STYLING
+        ========================================= */
+
+        @media (max-width: 600px) {
+            body {
+                padding: 16px 10px;
+            }
+
+            .section {
+                padding: 16px;
+            }
+
+            .opacity-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+
+        <h1>Advanced CSS Tutorial</h1>
+        <p>
+            Explore CSS selectors, variables, gradients,
+            shadows, opacity, and more.
+        </p>
+
+        <!-- SPECIFICITY -->
+        <section class="section">
+            <h2>1. CSS Specificity</h2>
+
+            <p id="specificity-demo"
+               class="specificity-text">
+                This paragraph is red because the ID selector wins.
+            </p>
+        </section>
+
+        <!-- INHERITANCE -->
+        <section class="section">
+            <h2>2. CSS Inheritance</h2>
+
+            <div class="parent">
+                <h3>Parent Element</h3>
+
+                <p>This paragraph inherits dark green.</p>
+
+                <p class="initial-example">
+                    This paragraph uses color: initial.
+                </p>
+
+                <p class="unset-example">
+                    This paragraph inherits through unset.
+                </p>
+            </div>
+        </section>
+
+        <!-- PSEUDO-CLASSES -->
+        <section class="section">
+            <h2>3. Pseudo-classes</h2>
+
+            <p>Hover over, focus on, or click this button.</p>
+
+            <button class="demo-button">
+                Click Me
+            </button>
+
+            <h3>First, Even, and Last Children</h3>
+
+            <ul class="fruit-list">
+                <li>Apple — first child</li>
+                <li>Banana — even child</li>
+                <li>Mango</li>
+                <li>Orange — last child</li>
+            </ul>
+
+            <h3>nth-child() Patterns</h3>
+
+            <ol class="number-list">
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+                <li>Item 4</li>
+                <li>Item 5</li>
+                <li>Item 6</li>
+            </ol>
+        </section>
+
+        <!-- PSEUDO-ELEMENTS -->
+        <section class="section">
+            <h2>4. Pseudo-elements</h2>
+
+            <h3 class="before-demo">
+                Content inserted before this heading
+            </h3>
+
+            <p class="after-demo">
+                Content inserted after this paragraph
+            </p>
+
+            <p class="first-letter-demo">
+                This paragraph demonstrates the first-letter
+                pseudo-element. Its initial letter is enlarged.
+            </p>
+
+            <p class="first-line-demo">
+                This paragraph demonstrates first-line styling.
+                Resize your browser window to see the first
+                formatted line change as the available width changes.
+            </p>
+        </section>
+
+        <!-- ATTRIBUTE SELECTORS -->
+        <section class="section">
+            <h2>5. Attribute Selectors</h2>
+
+            <form>
+                <label for="username">Username (required)</label>
+                <input id="username"
+                       type="text"
+                       required
+                       placeholder="Enter username">
+
+                <label for="email">Email address</label>
+                <input id="email"
+                       type="email"
+                       placeholder="Enter email">
+
+                <label for="message">Message</label>
+                <textarea id="message"
+                          rows="3"
+                          placeholder="Enter message"></textarea>
+
+                <button class="demo-button" type="button">
+                    Demo Button
+                </button>
+            </form>
+
+            <p class="featured">
+                This text matches the featured class attribute.
+            </p>
+
+            <p lang="en">
+                This paragraph has the English language attribute.
+            </p>
+
+            <p>
+                <a href="https://example.com">
+                    Secure link matching multiple selectors
+                </a>
+            </p>
+
+            <p>
+                <a href="report.pdf">
+                    PDF link
+                </a>
+            </p>
+
+            <p>
+                <a href="https://example.com/products">
+                    Product link containing "example"
+                </a>
+            </p>
+        </section>
+
+        <!-- CSS VARIABLES -->
+        <section class="section">
+            <h2>6. CSS Variables and var()</h2>
+
+            <div class="variable-demo">
+                <h3>Reusable Styling</h3>
+                <p>
+                    This box uses CSS variables for its
+                    color, spacing, and border radius.
+                </p>
+            </div>
+        </section>
+
+        <!-- GRADIENTS -->
+        <section class="section">
+            <h2>7. CSS Gradients</h2>
+
+            <div class="linear-gradient">
+                Linear Gradient
+            </div>
+
+            <div class="radial-gradient">
+                Radial Gradient
+            </div>
+
+            <div class="conic-gradient">
+                Conic Gradient
+            </div>
+        </section>
+
+        <!-- SHADOWS -->
+        <section class="section">
+            <h2>8. CSS Shadows</h2>
+
+            <div class="shadow-box">
+                <h3>Box Shadow</h3>
+                This box uses a soft outer shadow.
+            </div>
+
+            <div class="shadow-box inset-shadow">
+                Inset Shadow
+            </div>
+
+            <h2 class="text-shadow-demo">
+                Text Shadow Example
+            </h2>
+        </section>
+
+        <!-- OPACITY -->
+        <section class="section">
+            <h2>9. CSS Opacity</h2>
+
+            <div class="opacity-container">
+                <div class="opacity-box opacity-25">
+                    25% opacity
+                </div>
+
+                <div class="opacity-box opacity-50">
+                    50% opacity
+                </div>
+
+                <div class="opacity-box opacity-75">
+                    75% opacity
+                </div>
+
+                <div class="opacity-box opacity-100">
+                    100% opacity
+                </div>
+            </div>
+
+            <h3>Transparent Background Only</h3>
+
+            <div class="transparent-background">
+                My background is transparent, but my text
+                remains fully opaque.
+            </div>
+        </section>
+        <section class="section">
+            <h2>Important</h2>
+
+            <p class="important-demo">
+                This text is red because of !important.
+            </p>
+        </section>
+        <section>
+            <h2></h2>
+        </section>
+
+    </main>
+</body>
+</html>
+```

@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced CSS Practice</title>
+
+    <style>
+        /* =================================
+           1. RESET AND CSS VARIABLES
+        ================================= */
+
+        :root {
+            --primary: #5b4bdb;
+            --primary-dark: #4033a8;
+            --secondary: #0e9f8e;
+            --background: #f5f6fb;
+            --surface: #ffffff;
+            --text: #202236;
+            --muted: #666b80;
+            --border: #e2e5ef;
+            --radius: 14px;
+            --shadow: 0 5px 18px rgba(30, 35, 80, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            background: var(--background);
+            color: var(--text);
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        section {
+            scroll-margin-top: 90px;
+        }
+
+        .container {
+            width: min(100% - 32px, 1150px);
+            margin-inline: auto;
+        }
+
+        .section {
+            padding-block: 48px;
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            margin-bottom: 10px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        /* =================================
+           2. RESPONSIVE NAVIGATION
+        ================================= */
+
+        .site-header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-block: 12px;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* Keep the checkbox accessible but visually hidden */
+        .nav-toggle {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip-path: inset(50%);
+            white-space: nowrap;
+        }
+
+        .menu-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .nav-toggle:focus-visible + .menu-button {
+            outline: 3px solid var(--secondary);
+            outline-offset: 3px;
+        }
+
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            flex-basis: 100%;
+            gap: 4px;
+            list-style: none;
+        }
+
+        .nav-toggle:checked ~ .nav-links {
+            display: flex;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 10px 12px;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            background: #eeecff;
+            color: var(--primary-dark);
+        }
+
+        /* =================================
+           3. HERO SECTION AND TRANSFORMS
+        ================================= */
+
+        .hero {
+            background: linear-gradient(135deg, #e9e7ff, #e2f8f3);
+            padding-block: 65px;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            align-items: flex-start;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 620px;
+            margin-bottom: 22px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 0;
+            border-radius: 9px;
+            padding: 12px 18px;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            transition:
+                transform 0.25s ease,
+                background-color 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(91, 75, 219, 0.25);
+        }
+
+        .button:active {
+            transform: scale(0.97);
+        }
+
+        .transform-demo {
+            width: 170px;
+            height: 170px;
+            background: var(--primary);
+            color: white;
+            display: grid;
+            place-items: center;
+            border-radius: 20px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: var(--shadow);
+            animation: float 3s ease-in-out infinite;
+            transition: transform 0.4s ease;
+        }
+
+        .transform-demo:hover {
+            transform: rotate(8deg) scale(1.08);
+        }
+
+        /* =================================
+           4. CSS ANIMATIONS
+        ================================= */
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes changeColor {
+            0% {
+                background: #f97373;
+            }
+
+            50% {
+                background: #f5c451;
+            }
+
+            100% {
+                background: #0e9f8e;
+            }
+        }
+
+        .fade-example {
+            animation: fadeIn 1s ease both;
+        }
+
+        .spin-example {
+            width: 45px;
+            height: 45px;
+            border: 5px solid #ddd;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .pulse-example {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .slide-example {
+            animation: slideIn 1s ease-out both;
+        }
+
+        .color-example {
+            color: white;
+            animation: changeColor 3s ease-in-out infinite alternate;
+        }
+
+        .animation-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        .animation-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 12px;
+            overflow: hidden;
+        }
+
+        /* =================================
+           5. RESPONSIVE CARDS
+        ================================= */
+
+        .card-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            min-width: 0;
+            overflow: hidden;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.8s ease both;
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 28px rgba(30, 35, 80, 0.14);
+        }
+
+        .card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.04);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            margin-bottom: 8px;
+        }
+
+        .card-content p {
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        /* =================================
+           6. RESPONSIVE TABLE
+        ================================= */
+
+        .table-container {
+            max-width: 100%;
+            overflow-x: auto;
+            border-radius: var(--radius);
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
+
+        table {
+            width: 100%;
+            min-width: 570px;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        caption {
+            padding: 14px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        th,
+        td {
+            padding: 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: #eeecff;
+            color: var(--primary-dark);
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f8f8fc;
+        }
+
+        tbody tr:hover {
+            background: #e9f7f4;
+        }
+
+        /* =================================
+           7. RESPONSIVE IMAGES
+        ================================= */
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        .image-frame {
+            overflow: hidden;
+            border-radius: var(--radius);
+            background: var(--surface);
+            box-shadow: var(--shadow);
+        }
+
+        .image-frame img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .image-frame:hover img {
+            transform: scale(1.06);
+        }
+
+        .image-caption {
+            padding: 12px;
+            color: var(--muted);
+        }
+
+        /* =================================
+           8. ADVANCED FLEXBOX
+        ================================= */
+
+        .flex-demo {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 18px;
+            border: 2px dashed #b8b1f5;
+            border-radius: var(--radius);
+            background: var(--surface);
+        }
+
+        .flex-item {
+            flex: 1 1 130px;
+            min-width: 0;
+            padding: 18px 12px;
+            text-align: center;
+            background: #eeecff;
+            border-radius: 9px;
+        }
+
+        .flex-item:nth-child(2) {
+            flex-grow: 2;
+        }
+
+        .flex-item:nth-child(3) {
+            align-self: stretch;
+        }
+
+        /* =================================
+           9. ADVANCED CSS GRID
+        ================================= */
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "header"
+                "sidebar"
+                "main"
+                "footer";
+            gap: 14px;
+        }
+
+        .dashboard-header {
+            grid-area: header;
+        }
+
+        .dashboard-sidebar {
+            grid-area: sidebar;
+        }
+
+        .dashboard-main {
+            grid-area: main;
+        }
+
+        .dashboard-footer {
+            grid-area: footer;
+        }
+
+        .dashboard-panel {
+            padding: 22px;
+            border-radius: var(--radius);
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
+
+        .dashboard-header,
+        .dashboard-footer {
+            background: var(--primary);
+            color: white;
+        }
+
+        .dashboard-sidebar {
+            background: #e9e7ff;
+        }
+
+        .dashboard-main {
+            min-width: 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(min(100%, 130px), 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .stat {
+            padding: 16px;
+            background: #f1f8f7;
+            border-radius: 10px;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.4rem;
+            color: var(--secondary);
+        }
+
+        /* =================================
+           10. FOOTER
+        ================================= */
+
+        .site-footer {
+            padding-block: 25px;
+            background: #202236;
+            color: white;
+            text-align: center;
+        }
+
+        /* =================================
+           11. TABLET BREAKPOINT
+        ================================= */
+
+        @media (min-width: 600px) {
+            .container {
+                width: min(100% - 48px, 1150px);
+            }
+
+            .hero-content {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .hero-text {
+                flex: 1 1 60%;
+            }
+
+            .hero-art {
+                flex: 0 1 200px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .animation-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .image-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .dashboard {
+                grid-template-columns: 180px minmax(0, 1fr);
+                grid-template-areas:
+                    "header header"
+                    "sidebar main"
+                    "footer footer";
+            }
+        }
+
+        /* =================================
+           12. DESKTOP BREAKPOINT
+        ================================= */
+
+        @media (min-width: 850px) {
+            .menu-button {
+                display: none;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-basis: auto;
+                flex-direction: row;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .animation-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .image-gallery {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .dashboard {
+                grid-template-columns: 220px minmax(0, 1fr);
+                grid-template-areas:
+                    "header header"
+                    "sidebar main"
+                    "footer footer";
+            }
+        }
+
+        /* =================================
+           13. ACCESSIBILITY
+        ================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- RESPONSIVE NAVIGATION -->
+    <header class="site-header">
+        <nav class="navbar container" aria-label="Main navigation">
+            <a href="#home" class="logo">Advanced CSS</a>
+
+            <input
+                type="checkbox"
+                id="nav-toggle"
+                class="nav-toggle"
+            >
+
+            <label for="nav-toggle" class="menu-button">
+                Menu ☰
+            </label>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#animations">Animations</a></li>
+                <li><a href="#cards">Cards</a></li>
+                <li><a href="#table">Table</a></li>
+                <li><a href="#images">Images</a></li>
+                <li><a href="#layouts">Layouts</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- TRANSFORMS AND FLEXBOX -->
+        <section class="hero" id="home">
+            <div class="container hero-content">
+                <div class="hero-text fade-example">
+                    <h1>Learn Advanced CSS</h1>
+
+                    <p>
+                        Explore transformations, animations,
+                        responsive components, Flexbox, and CSS Grid
+                        through practical examples.
+                    </p>
+
+                    <a href="#animations" class="button">
+                        Explore Examples
+                    </a>
+                </div>
+
+                <div class="hero-art">
+                    <div class="transform-demo">
+                        Hover over me!
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CSS ANIMATIONS -->
+        <section class="section container" id="animations">
+            <h2 class="section-title">CSS Animation Examples</h2>
+
+            <p class="section-description">
+                Practice fading, spinning, pulsing, sliding,
+                and changing colors.
+            </p>
+
+            <div class="animation-grid">
+                <article class="animation-box">
+                    <h3>Fade In</h3>
+                    <p class="fade-example">
+                        I appear gradually.
+                    </p>
+                </article>
+
+                <article class="animation-box">
+                    <h3>Loading Spinner</h3>
+                    <div class="spin-example"
+                         role="img"
+                         aria-label="Decorative spinning indicator">
+                    </div>
+                </article>
+
+                <article class="animation-box">
+                    <h3>Pulse</h3>
+                    <p class="pulse-example">
+                        I grow and shrink.
+                    </p>
+                </article>
+
+                <article class="animation-box">
+                    <h3>Slide In</h3>
+                    <p class="slide-example">
+                        I slide into position.
+                    </p>
+                </article>
+
+                <article class="animation-box">
+                    <h3>Color Change</h3>
+                    <p class="color-example">
+                        My background changes.
+                    </p>
+                </article>
+
+                <article class="animation-box">
+                    <h3>Transform</h3>
+                    <p>
+                        Hover over the purple square above to
+                        see rotation and scaling.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- RESPONSIVE CARDS -->
+        <section class="section container" id="cards">
+            <h2 class="section-title">Responsive Cards</h2>
+
+            <p class="section-description">
+                The number of cards per row adjusts automatically
+                to the available width.
+            </p>
+
+            <div class="card-grid">
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80"
+                        alt="Laptop on a desk used for web development"
+                        loading="lazy"
+                    >
+
+                    <div class="card-content">
+                        <h3>Web Development</h3>
+                        <p>
+                            Build websites using HTML, CSS,
+                            and JavaScript.
+                        </p>
+                        <a href="#layouts" class="button">
+                            Learn More
+                        </a>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80"
+                        alt="People working together at a computer"
+                        loading="lazy"
+                    >
+
+                    <div class="card-content">
+                        <h3>Responsive Design</h3>
+                        <p>
+                            Create layouts that adapt to
+                            phones, tablets, and desktops.
+                        </p>
+                        <a href="#images" class="button">
+                            Learn More
+                        </a>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img
+                        src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=700&q=80"
+                        alt="Programming code displayed on a screen"
+                        loading="lazy"
+                    >
+
+                    <div class="card-content">
+                        <h3>CSS Layouts</h3>
+                        <p>
+                            Organize content with Flexbox
+                            and CSS Grid.
+                        </p>
+                        <a href="#layouts" class="button">
+                            Learn More
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- RESPONSIVE TABLE -->
+        <section class="section container" id="table">
+            <h2 class="section-title">Responsive Table</h2>
+
+            <p class="section-description">
+                On narrow screens, scroll horizontally to see
+                every column.
+            </p>
+
+            <div class="table-container">
+                <table>
+                    <caption>Employee Information</caption>
+
+                    <thead>
+                        <tr>
+                            <th scope="col">Employee ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Experience</th>
+                            <th scope="col">Salary</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>EMP101</td>
+                            <td>Rahul</td>
+                            <td>Development</td>
+                            <td>2 years</td>
+                            <td>₹35,000</td>
+                        </tr>
+
+                        <tr>
+                            <td>EMP102</td>
+                            <td>Priya</td>
+                            <td>Design</td>
+                            <td>3 years</td>
+                            <td>₹40,000</td>
+                        </tr>
+
+                        <tr>
+                            <td>EMP103</td>
+                            <td>Arjun</td>
+                            <td>Testing</td>
+                            <td>1 year</td>
+                            <td>₹30,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- RESPONSIVE IMAGES -->
+        <section class="section container" id="images">
+            <h2 class="section-title">Responsive Images</h2>
+
+            <p class="section-description">
+                Images stay inside their containers and
+                maintain consistent gallery proportions.
+            </p>
+
+            <div class="image-gallery">
+                <figure class="image-frame">
+                    <img
+                        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80"
+                        alt="Team collaborating on a project"
+                        loading="lazy"
+                    >
+                    <figcaption class="image-caption">
+                        Collaboration
+                    </figcaption>
+                </figure>
+
+                <figure class="image-frame">
+                    <img
+                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+                        alt="Workspace with a computer and keyboard"
+                        loading="lazy"
+                    >
+                    <figcaption class="image-caption">
+                        Workspace
+                    </figcaption>
+                </figure>
+
+                <figure class="image-frame">
+                    <img
+                        src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80"
+                        alt="Close-up of programming code"
+                        loading="lazy"
+                    >
+                    <figcaption class="image-caption">
+                        Programming
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ADVANCED FLEXBOX AND GRID -->
+        <section class="section container" id="layouts">
+            <h2 class="section-title">Advanced Flexbox</h2>
+
+            <p class="section-description">
+                Resize the browser to observe wrapping, flexible
+                sizing, and spacing.
+            </p>
+
+            <div class="flex-demo">
+                <div class="flex-item">Item One</div>
+                <div class="flex-item">Item Two: grows</div>
+                <div class="flex-item">Item Three</div>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 45px;">
+                Advanced CSS Grid
+            </h2>
+
+            <p class="section-description">
+                Named grid areas arrange the dashboard into
+                a header, sidebar, main section, and footer.
+            </p>
+
+            <div class="dashboard">
+                <header class="dashboard-panel dashboard-header">
+                    <h3>Dashboard Header</h3>
+                </header>
+
+                <aside class="dashboard-panel dashboard-sidebar">
+                    <h3>Sidebar</h3>
+                    <p>Navigation and filters</p>
+                </aside>
+
+                <section class="dashboard-panel dashboard-main">
+                    <h3>Main Dashboard</h3>
+                    <p>Responsive statistics grid</p>
+
+                    <div class="stats-grid">
+                        <div class="stat">
+                            <strong>120</strong>
+                            <span>Users</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>85</strong>
+                            <span>Orders</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>64</strong>
+                            <span>Projects</span>
+                        </div>
+                    </div>
+                </section>
+
+                <footer class="dashboard-panel dashboard-footer">
+                    <p>Dashboard Footer</p>
+                </footer>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Advanced CSS Practice Project</p>
+        </div>
+    </footer>
+
+</body>
+</html>

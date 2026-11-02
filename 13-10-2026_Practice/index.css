@@ -1,0 +1,53 @@
+/* background color and other properties for backgrounds
+body{
+     /*background-color: turquoise; /*background -color*/
+    background-image:url("pexels-diva-38143651.jpg"); /*background-Image*/
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+     /* this background property is used to repeat the background image in the web page in both horizontally and vertically
+      2. Background size contains three peoperties contain,cover and by specificing the dimensions.
+
+} */
+
+/*borders in css also have different types of Properties like border style,color,width,sides,shorthand and rounded borders 
+p{ border-style: dotted - Defines a dotted border
+dashed - Defines a dashed border
+solid - Defines a solid border
+double - Defines a double border
+groove - Defines a 3D grooved border. The effect depends on the border-color value
+ridge - Defines a 3D ridged border. The effect depends on the border-color value
+inset - Defines a 3D inset border. The effect depends on the border-color value
+outset - Defines a 3D outset border. The effect depends on the border-color value
+none - Defines no border
+hidden - Defines a hidden border
+border-width:px px px px px or medium or thick
+border-color: different colors
+border-sides: used to style different sides of the border like top,bottom,left and right in different format
+border: border shorthand means every property in the specificed in only one line
+border-radius : used to give rounded borders in the Html elements*/
+/*
+/* padding and its different specifications
+Padding is the space between the content and the border.
+p{ padding 20px for all the sides 
+   padding 20px 30px 20px for the top and bottom and 30px for left and right
+   padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+} */
+/* margin is the outer space between the border of the  one element and border of the other element
+.box {
+    margin: 20px;
+}
+margin can also be given to individual side of the element like
+.box {
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+    margin-left: 40px;
+}
+    
+
+

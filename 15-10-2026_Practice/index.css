@@ -1,0 +1,55 @@
+/* CSS specificcity is used to determine which style is appiled to the element when their are different styles mentioned in differnt parts of the HTML document
+Inheritance means that certain CSS properties pass from a parent element to its descendants.
+Example:
+Both the heading and paragraph generally inherit the dark-blue text color and Arial font from their parent.
+Properties commonly inherited
+- color
+- font-family
+- font-size
+- font-style
+- font-weight
+- line-height
+- text-align
+- visibility
+- cursor
+Properties that usually do not inherit
+- margin
+- padding
+- border
+- width
+- height
+- background
+- box-shadow
+- display
+Psuedo classes
+structural,link,user-action,form,
+A pseudo-class selects an element based on its state, position, or relationship to other elements.
+Pseudo-classes begin with a single colon (:).
+A. :hover
+Selects an element while the pointer is hovering over it.
+When the pointer moves over the button, its background changes to dark blue.
+Uses: Button effects, navigation menus, image overlays, and card interactions.
+Note that hover behavior is not available in the same way on every touchscreen, so important information should not depend on hover alone.
+B. :focus
+Selects an element when it receives keyboard or other supported input focus.
+When the input receives focus, it displays a visible outline.
+Uses: Forms, search bars, accessibility, and keyboard navigation.
+Avoid removing focus indicators without providing an equally clear replacement.
+C. :active
+Selects an element while it is being activated, such as while a mouse button is held down on it.
+The button briefly shrinks and changes color while being pressed.
+The difference is:
+- :hover — pointer is over the element.
+- :focus — element has input focus.
+- :active — element is currently being activated.
+An element can satisfy more than one of these states at the same time.
+D. :first-child
+Selects an element only if it is the first element child of its parent.
+Only Apple becomes red.
+E. :last-child
+Selects an element only if it is the last element child of its parent.
+Only Mango becomes green.
+Whitespace and comments do not count as element children.
+F. :nth-child()
+Selects an element based on its position among its parent's element children.
+Selects the second child: Banana.
