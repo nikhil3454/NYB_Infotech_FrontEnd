@@ -9,7 +9,7 @@ import ContextAPI from "./ContextAPI.jsx";
 import { AuthProvider, ThemeProvider, UserProvider } from "./Providers.jsx";
 import { Provider } from "react-redux";
 
-import { store } from "./app/store";
+ //import { store } from "./app/store";
 
 
 // Find the root element in index.html
@@ -21,14 +21,6 @@ const root = createRoot(container);
 // Render the App component
 root.render(
   <StrictMode>
-    <AuthProvider>
-      <ThemeProvider>
-        <UserProvider>
-          <Provider store={store}>
-            <ContextAPI />
-          </Provider>
-        </UserProvider>
-      </ThemeProvider>
-    </AuthProvider>
+    <Api/>
   </StrictMode>
 );

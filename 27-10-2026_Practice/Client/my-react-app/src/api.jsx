@@ -52,6 +52,7 @@ function Api() {
       if (!Array.isArray(data)) {
         throw new Error("Invalid employee data received.");
       }
+      
 
       setEmployees(data);
     } catch (err) {

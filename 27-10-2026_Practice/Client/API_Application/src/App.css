@@ -1,0 +1,187 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  color: #222;
+}
+
+.app-container {
+  width: 90%;
+  max-width: 1400px;
+  margin: 30px auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #243b64;
+}
+
+.header p {
+  color: #666;
+}
+
+.filter-section {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.filter-section input,
+.filter-section select {
+  flex: 1;
+  min-width: 180px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  background: white;
+}
+
+button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 6px;
+  background: #243b64;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  background: #365b91;
+}
+
+.result-info {
+  margin-bottom: 20px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.product-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  height: 210px;
+  object-fit: contain;
+  background: #fff;
+  padding: 10px;
+}
+
+.product-details {
+  padding: 15px;
+}
+
+.category {
+  display: inline-block;
+  background: #e5edfa;
+  color: #243b64;
+  padding: 5px 9px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.product-details h3 {
+  margin: 12px 0;
+  font-size: 17px;
+}
+
+.description {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.5;
+  min-height: 58px;
+}
+
+.product-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.product-info h3 {
+  color: #16804a;
+  margin: 0;
+}
+
+.product-info span {
+  font-size: 14px;
+}
+
+.brand,
+.stock {
+  font-size: 13px;
+  color: #666;
+  margin-top: 10px;
+}
+
+.status-message,
+.empty-message {
+  text-align: center;
+  margin: 100px auto;
+  padding: 20px;
+}
+
+.status-message p,
+.empty-message p {
+  margin-top: 10px;
+  color: #666;
+}
+
+.error h2 {
+  color: #c62828;
+}
+
+.error button {
+  margin-top: 20px;
+}
+
+@media (max-width: 1000px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .app-container {
+    width: 94%;
+  }
+}
