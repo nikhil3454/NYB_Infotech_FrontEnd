@@ -8,6 +8,7 @@ import {
   incrementByAmount,
 } from "./counterSlice";
 
+
 const ThemeContext = createContext();
 function ThemeProvider({ children }) {
   const [theme, setTheme] = useState("light");
