@@ -8,6 +8,8 @@ import axios from "axios";
 import ContextAPI from "./Context_and_Redux _revision.jsx";
 import { Provider } from "react-redux";
 import ReducerPractice from "./reducer_Practice.jsx";
+import ConditionalRenderingApp from "./Conditional_Rendering_Revision.jsx";
+
 
 // Find the root element in index.html
 const container = document.getElementById("root");
@@ -18,6 +20,6 @@ const root = createRoot(container);
 // Render the App component
 root.render(
   <StrictMode>
-    <ReducerPractice/>
+    <ConditionalRenderingApp />
   </StrictMode>
 );
