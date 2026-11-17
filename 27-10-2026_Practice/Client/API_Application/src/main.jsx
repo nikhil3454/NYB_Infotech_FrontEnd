@@ -9,6 +9,7 @@ import ContextAPI from "./Context_and_Redux _revision.jsx";
 import { Provider } from "react-redux";
 import ReducerPractice from "./reducer_Practice.jsx";
 import ConditionalRenderingApp from "./Conditional_Rendering_Revision.jsx";
+import UseEffect_and_API_revision from "./UseEffect_and_API_revision.jsx";
 
 
 // Find the root element in index.html
@@ -20,6 +21,6 @@ const root = createRoot(container);
 // Render the App component
 root.render(
   <StrictMode>
-    <ConditionalRenderingApp />
+    <UseEffect_and_API_revision />
   </StrictMode>
 );
