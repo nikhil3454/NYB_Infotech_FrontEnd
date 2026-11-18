@@ -10,6 +10,7 @@ import { Provider } from "react-redux";
 import ReducerPractice from "./reducer_Practice.jsx";
 import ConditionalRenderingApp from "./Conditional_Rendering_Revision.jsx";
 import UseEffect_and_API_revision from "./UseEffect_and_API_revision.jsx";
+import DynamicForm from "./Forms_revision.jsx";
 
 
 // Find the root element in index.html
@@ -22,5 +23,6 @@ const root = createRoot(container);
 root.render(
   <StrictMode>
     <UseEffect_and_API_revision />
+    <DynamicForm />
   </StrictMode>
 );
