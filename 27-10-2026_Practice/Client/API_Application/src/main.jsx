@@ -11,6 +11,7 @@ import ReducerPractice from "./reducer_Practice.jsx";
 import ConditionalRenderingApp from "./Conditional_Rendering_Revision.jsx";
 import UseEffect_and_API_revision from "./UseEffect_and_API_revision.jsx";
 import DynamicForm from "./Forms_revision.jsx";
+import HOC from "./HOC_Practice.jsx";
 
 
 // Find the root element in index.html
@@ -22,7 +23,6 @@ const root = createRoot(container);
 // Render the App component
 root.render(
   <StrictMode>
-    <UseEffect_and_API_revision />
-    <DynamicForm />
+    <HOC />
   </StrictMode>
 );

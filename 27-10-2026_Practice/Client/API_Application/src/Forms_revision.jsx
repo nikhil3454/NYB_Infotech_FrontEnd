@@ -73,7 +73,8 @@ export default function DynamicForm() {
 
     setValues((prev) => {
       // checkbox group -> add/remove from array
-      if (type === "checkbox" && name === "skills") {
+      if (type === "checkbox" && name === "skills") q
+      {
         const skills = checked
           ? [...prev.skills, value]
           : prev.skills.filter((s) => s !== value);
@@ -90,6 +91,7 @@ export default function DynamicForm() {
 
   // Marks a field as "touched" when the user leaves it
   const handleBlur = (e) => {
+    
     const { name } = e.target;
     setTouched((prev) => ({ ...prev, [name]: true }));
   };
